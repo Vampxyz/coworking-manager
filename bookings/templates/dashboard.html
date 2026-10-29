@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Room Management</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dash-header">
+            <h2>Room Management</h2>
+            <p>Monitore a disponibilidade e o cadastro de salas em tempo real.</p>
+        </header>
+
+        <section class="table-card">
+            <h3>Room Inventory</h3>
+            <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Room Name</th>
+                            <th>Type</th>
+                            <th>Capacity</th>
+                            <th>Price/Hour</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for room in rooms %}
+                        <tr>
+                            <td>{{ room.name }}</td>
+                            <td>{{ room.get_room_type_display }}</td>
+                            <td>{{ room.capacity }} pessoas</td>
+                            <td>R$ {{ room.price_per_hour }}</td>
+                            <td>
+                                {% if room.availability %}
+                                    <span class="badge available">Available</span>
+                                {% else %}
+                                    <span class="badge occupied">Occupied</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" style="text-align: center;">Nenhuma sala cadastrada ainda.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

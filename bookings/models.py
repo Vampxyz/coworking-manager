@@ -2,14 +2,13 @@ from django.db import models
 
 
 # Create your models here.
-class Client(models.Model):
-    id = models.AutoField(primary_key=True)
+class Client(models.Model):    
     name = models.CharField(max_length=100, blank=False)
     email = models.EmailField()
     phone_number = models.CharField(max_length=15, blank=True)
     
     def __str__(self):
-        return f"{self.name} - {self.email} - {self.phone_number}"
+        return f"{self.name} - {self.email}"
 
 class Room(models.Model):
     ROOM_TYPES = [
@@ -18,8 +17,6 @@ class Room(models.Model):
         ('Event', 'Event Room'),
         ('Coworking', 'Coworking Space'),
     ]
-
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, blank=False)
     room_type = models.CharField(choices=ROOM_TYPES, max_length=20)
     capacity = models.IntegerField()
@@ -27,11 +24,9 @@ class Room(models.Model):
     availability = models.BooleanField(default=True)
     
     def __str__(self):
-        return f"{self.name} - {self.room_type} - Capacity: {self.capacity} - Price: ${self.price_per_hour} - Available: {'Yes' if self.availability else 'No'}"
+        return f"{self.name} - {self.room_type} - Capacity: {self.capacity} - Price: ${self.price_per_hour}"
 
-class Booking(models.Model):
-    id = models.AutoField(primary_key=True)
-    
+class Booking(models.Model):    
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     

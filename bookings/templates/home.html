@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Coworking Manager - Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">COWORK.IO</div>
+        <nav>
+            <a href="{% url 'bookings:home' %}">Home</a>
+            <a href="{% url 'bookings:dashboard' %}">Dashboard</a>
+            <a href="{% url 'bookings:dashboard' %}" class="btn-dashboard">Acessar Sistema</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-text">
+                <h1>YOUR SMART WORKSPACE, YOUR WAY.</h1>
+                <p>Gerencie salas de reunião, estações de trabalho compartilhadas e agendamentos de forma rápida, inteligente e centralizada.</p>
+                <div class="hero-actions">
+                    <a href="{% url 'bookings:dashboard' %}" class="cta-btn">Ver Salas e Painel</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Estatísticas / Cards de Destaque -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <h3>100%</h3>
+                <p>Controle Digital</p>
+            </div>
+            <div class="stat-card">
+                <h3>Agile</h3>
+                <p>Reservas Instantâneas</p>
+            </div>
+            <div class="stat-card">
+                <h3>PostgreSQL</h3>
+                <p>Dados Seguros no Servidor</p>
+            </div>
+        </section>
+
+        <!-- Seção de Funcionalidades / Apresentação -->
+        <section class="features-section">
+            <div class="section-title">
+                <h2>Como o Sistema Funciona</h2>
+                <p>Estruturado para otimizar o fluxo do seu espaço de coworking</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon">🏢</div>
+                    <h3>Gestão de Salas</h3>
+                    <p>Cadastre diferentes tipos de ambientes, defina capacidades máximas, valores por hora e acompanhe a disponibilidade em tempo real.</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon">📅</div>
+                    <h3>Agendamentos Claros</h3>
+                    <p>Vincule clientes a salas específicas informando datas, horários e duração de forma integrada com o banco de dados.</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Tecnologia Moderna</h3>
+                    <p>Desenvolvido em Django com ORM robusto, PostgreSQL e interface inspirada em padrões modernos de UI/UX.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Coworking Manager. Desenvolvido para a Atividade UC4.</p>
+    </footer>
+</body>
+</html>

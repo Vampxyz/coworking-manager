@@ -1,16 +1,17 @@
 from django.shortcuts import render
 from .models import Booking, Room, Client
 
-def dashboard_view(request):
-    bookings = Booking.objects.select_related('client', 'room').all()
-    rooms = Room.objects.all()
-    clients = Client.objects.all()
+def home_view(request):
+    return render(request, 'home.html')
 
+def dashboard_view(request):
+    bookings = Booking.objects.select_related('room', 'client').all()
+    clients = Client.objects.all()
+    rooms = Room.objects.all()
     context = {
         'bookings': bookings,
-        'rooms': rooms,
         'clients': clients,
-        'total_bookings': bookings.count(),
+        'rooms': rooms,
     }
     
-    return render(request, 'bookings/dashboard.html', context)
+    return render(request, 'dashboard.html', context)
