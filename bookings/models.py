@@ -23,8 +23,16 @@ class Room(models.Model):
     price_per_hour = models.DecimalField(max_digits=10, decimal_places=2)
     availability = models.BooleanField(default=True)
     
+    @property
+    def vacancies(self):
+        booked_counts = self.bookings.count()
+        
+        remaining = self.capacity - booked_counts
+
+        return remaining if remaining > 0 else 0
+    
     def __str__(self):
-        return f"{self.name} - {self.room_type} - Capacity: {self.capacity} - Price: ${self.price_per_hour}"
+        return f"{self.name} - Vagas restantes: {self.vacancies} | Tipo: {self.room_type} | Preço/hora: R${self.price_per_hour}"
 
 class Booking(models.Model):    
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
